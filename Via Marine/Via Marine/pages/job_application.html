@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>What's New - Via Marine</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/viamarine.jpg">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon/viamarine.jpg">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css2?family=Aldrich&family=Francois+One&family=Inconsolata:wght@300;400;600;900&family=Karla:wght@300;400;500;600;800&family=Lato:wght@300;400;900&family=Lora:wght@400;500;600;700&family=Merriweather:wght@300;400;700;900&family=Montserrat:wght@200;300;400;500;600;700;900&family=Nunito:wght@200;300;400;600;700;900&family=Open+Sans:wght@400;600;700;800&family=Oswald:wght@300;400;500;600;700&family=Poppins:wght@100;200;300;400;500;600;700;900&family=Proza+Libre:wght@400;500;600;700;800&family=Raleway:wght@200;300;400;600;900&family=Roboto+Slab:wght@200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Work+Sans:wght@200;400;500;600;700;900&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="../assets/css/contacts.css">
+    <link rel="stylesheet" href="../assets/css/common.css">
+    <link rel="stylesheet" href="../assets/css/header.css"> 
+
+        <header>
+            <h1 class="title-1">
+                <span class="via">Via</span>
+                <span class="marine">Marine</span>
+            </h1>
+            <nav>
+            <ul class="menu">
+                <li class="nav-list">
+                    <a class="nav-link active" href="../index.html">Home</a>
+                </li>
+                <li class="nav-list">
+                    <a class="nav-link" href="./about.html">About</a>
+                </li>
+                <li class="nav-list">
+                    <a class="nav-link" href="./projects.html">Ships</a>
+                </li>
+                <li class="nav-list">
+                    <a class="nav-link" href="./contacts.html">Contacts</a>
+                </li>
+                <li class="nav-list">
+                    <a class="nav-link" href="./names.html">Names</a>
+                </li>
+                <li class="nav-list">
+                    <a class="nav-link" href="./login.html">Log In</a>
+                </li>
+            </ul>
+        </nav>
+    </header>   
+
+    <br><br><br><br><br> 
+    <section>
+        <center>
+            <article>
+            <section class="job-application-section">
+                <div class="container">
+                    <br>
+                    <h2 class="section-title">Job Application Form</h2>
+                <form id="jobApplicationForm" class="job-application-form">
+                <div class="form-row">
+
+                <br/>
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input type="text" placeholder="First Name" id="firstName" required>
+                </div>
+
+                <br/>
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" placeholder="Last Name" id="lastName" required>
+                </div>
+                </div>
+
+                <br/>
+                <div class="form-row">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" placeholder="Email" id="email" required>
+                </div>
+
+                <br/>    
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" placeholder="Phone Number" id="phone" required>
+                </div>
+                </div>
+
+                <br/>
+                <div class="form-row">
+                <div class="form-group">
+                    <label for="dateOfBirth">Date of Birth</label>
+                    <input type="date" id="dateOfBirth" required>
+                </div>
+
+                <br/>
+                <div class="form-group">
+                    <label for="gender">Gender</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="gender" value="Female" required> Female</label>
+                    <label><input type="radio" name="gender" value="Male"> Male</label>                
+                </div>
+                </div>
+                </div>
+
+                <br/>
+                <div class="form-row">
+                <div class="form-group">
+                    <label for="position">Position Applying For</label>
+                    <select id="position" required>
+                        <option value="">Select a position</option>
+                        <option value="Captain">Captain</option>
+                        <option value="Chief Engineer">Chief Engineer</option>
+                        <option value="Deck Officer">Deck Officer</option>
+                        <option value="Engine Officer">Engine Officer</option>
+                        <option value="Able Seaman">Seaman</option>
+                        <option value="Oiler">Oiler</option>
+                        <option value="Cook">Cook</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <br/>
+                <div class="form-group">
+                    <label for="location">Preferred Location</label>
+                    <select id="location" required>
+                        <option value="Luzon">Luzon</option>
+                        <option value="Visayas">Visayas</option>
+                        <option value="Mindanao">Mindanao</option>
+                    </select>
+                </div>
+                </div>
+
+                <br/>
+                <div class="form-group">
+                    <label for="experience">Years of Experience</label>
+                    <input type="number" id="experience" min="0" max="50" required>
+                </div>
+
+                <br>
+                <div class="form-group">
+                    <label for="resume">Resume/CV (PDF, DOCX, EXCEL OR IMAGES)</label>
+                    <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" required>
+                </div>
+
+                <br/>
+                <div class="form-group">
+                    <label for="questiom">Question</label>
+                    <textarea name="question" id="question" rows="5" pl aceholder="Why do you want to work with Via Marine?"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="submit-button">Submit Application</button>
+                    </div>
+                    <br>
+                </form>
+            </div>
+        </section>
+    </article>
+</center>
+
+        <script>
+            document.getElementById('jobApplicationForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const dateOfBirth = document.getElementById('dateOfBirth').value;
+            const position = document.getElementById('position').value;
+            const location = document.getElementById('location').value;
+            const gender = document.querySelector('input[name="gender"]:checked').value;
+            const experience = document.getElementById('experience').value;
+            const question = document.getElementById('question').value;
+            const resumeFile = document.getElementById('resume').files[0];
+            if (resumeFile) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                const resumeData = e.target.result;
+                const application = {
+                    firstName,
+                    lastName,
+                    fullName: `${firstName} ${lastName}`,
+                    email,
+                    phone,
+                    dateOfBirth,
+                    position,
+                    location,
+                    gender,
+                    experience,
+                    resumeFileName: resumeFile.name,
+                    resumeFileType: resumeFile.type,
+                    resumeData: resumeData,
+                    question,
+                    date: new Date().toLocaleString(),
+                    status: 'New'
+                };
+
+                let applications = JSON.parse(localStorage.getItem('jobApplications')) || [];          
+                applications.push(application);
+                localStorage.setItem('jobApplications', JSON.stringify(applications));
+                document.getElementById('jobApplicationForm').reset();
+                alert('Your job application has been submitted successfully!');
+                };
+                reader.readAsDataURL(resumeFile);
+                } 
+                else {
+                alert('Please upload your resume file.');
+            }
+        });
+            </script>
+        </section>
+    </body>
+</html>

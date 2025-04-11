@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Admin Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="viamarine_icon" sizes="180x180" href="../assets/favicon/viamarine.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/viamarine.jpg">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon/viamarine.jpg">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/common.css">
+    <link rel="stylesheet" href="../assets/css/header.css">
+    <link rel="stylesheet" href="../assets/css/login.css">
+</head>
+
+<body>
+    <main>
+        <center>
+        <section class="login-section">
+            <div class="container">
+                <h2>Admin Login</h2>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+
+                <p id="message"></p>
+                <div class="info-text">
+                    <p>Only authorized administrators can access this area.</p>
+                </div>
+            </div>
+        </section>
+    </center>
+</main>
+
+    <script>
+        if (!localStorage.getItem('adminAccounts')) {
+            const defaultAdmins = [
+                { username: 'admin1', password: 'password1', displayName: 'Administrator 1' },
+                { username: 'admin2', password: 'password2', displayName: 'Administrator 2' }
+            ];
+            localStorage.setItem('adminAccounts', JSON.stringify(defaultAdmins));
+        }
+
+        const loginForm = document.getElementById('loginForm');
+        const message = document.getElementById('message');
+        loginForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value; 
+            const adminAccounts = JSON.parse(localStorage.getItem('adminAccounts')) || [];
+            const admin = adminAccounts.find(admin => 
+            admin.username === username && admin.password === password
+            );
+
+            if (admin) {
+                message.textContent = 'Login successful!';
+                message.style.color = 'green';   
+                localStorage.setItem('currentUser', username);
+                setTimeout(() => {
+                    window.location.href = './admin-dashboard.html';
+                }, 1500);
+            } 
+
+            else {
+                message.textContent = 'Invalid username or password.';
+                message.style.color = 'red';
+            }
+
+            loginForm.reset();
+            });
+        </script>
+    </body>
+</html>

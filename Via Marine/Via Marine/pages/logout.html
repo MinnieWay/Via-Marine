@@ -1,0 +1,22 @@
+<header>
+    <h1 class="title-1">
+        <span class="via">Via</span>
+        <span class="marine">Marine</span>
+    </h1>
+
+<script>
+    const authLink = document.getElementById('authLink');
+    const currentUser = localStorage.getItem('currentUser');
+    if (currentUser) {
+        authLink.innerHTML = `<a class="nav-link" href="#" onclick="logout()">Logout (${currentUser})</a>`;
+    } 
+
+    else {
+        authLink.innerHTML = '<a class="nav-link" href="./login.html">Login</a>';
+    }
+
+    function logout() {
+        localStorage.removeItem('currentUser');
+        window.location.reload();
+    }
+</script>

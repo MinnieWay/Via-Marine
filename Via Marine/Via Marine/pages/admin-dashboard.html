@@ -1,0 +1,1126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Admin Dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/viamarine.jpg">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon/viamarine.jpg">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/common.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/admin-dashboard.css">
+    <link rel="stylesheet" href="../assets/css/header.css">
+
+    <style>
+        .admin-dashboard {
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .dashboard-tabs {
+            display: flex;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+            overflow-x: auto;
+        }
+
+        .tab-button {
+            padding: 10px 20px;
+            background: #f1f1f1;
+            border: none;
+            cursor: pointer;
+            margin-right: 5px;
+            border-radius: 5px 5px 0 0;
+            white-space: nowrap;
+        }
+
+        .tab-button.active {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 20px;
+            background: #fff;
+            border-radius: 0 0 5px 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+        }
+
+        .post {
+            background: #f9f9f9;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            position: relative;
+            border-left: 4px solid #4CAF50;
+        }
+
+        .post.private {
+            border-left-color: #ff9800;
+        }
+
+        .post-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .post-title {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+
+        .post-badge {
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 12px;
+            color: white;
+            background: #4CAF50;
+        }
+
+        .post-badge.private {
+            background: #ff9800;
+        }
+
+        .post-content {
+            margin-bottom: 15px;
+        }
+
+        .post-image {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 15px;
+            border-radius: 4px;
+        }
+
+        .post-meta {
+            font-size: 0.8rem;
+            color: #777;
+            margin-bottom: 10px;
+        }
+
+        .post-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .post-actions button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .btn-delete {
+            background: #f44336;
+            color: white;
+        }
+
+        .btn-edit {
+            background: #2196F3;
+            color: white;
+        }
+
+        .btn-visibility {
+            background: #ff9800;
+            color: white;
+        }
+
+        .contact-item {
+            background: #f9f9f9;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border-left: 4px solid #2196F3;
+        }
+
+        .contact-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .contact-name {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+
+        .contact-details {
+            margin: 10px 0;
+        }
+
+        .contact-details p {
+            margin: 5px 0;
+        }
+
+        .contact-message {
+            background: #fff;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+            border-left: 3px solid #ddd;
+        }
+
+        .contact-date {
+            font-size: 0.8rem;
+            color: #777;
+        }
+
+        #userInfo {
+            background: #f1f1f1;
+            padding: 10px 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+
+        .btn-primary {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #45a049;
+        }
+
+        .logout-btn {
+            background: #f44336;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        .admin-profile {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            border-left: 4px solid #673AB7;
+        }
+
+        .admin-profile h3 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        .profile-form {
+            margin-top: 15px;
+        }
+
+        .profile-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .admin-table th, 
+        .admin-table td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .admin-table th {
+            background-color: #f2f2f2;
+            font-weight: 600;
+        }
+
+        .admin-table tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        .admin-actions {
+            display: flex;
+            gap: 5px;
+        }
+
+        .btn-edit-username {
+            background: #2196F3;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        .btn-reset-password {
+            background: #FF9800;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border-radius: 5px;
+            width: 80%;
+            max-width: 500px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .modal-header h3 {
+            margin: 0;
+        }
+
+        .close-modal {
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close-modal:hover {
+            color: #333;
+        }
+
+        .modal-body {
+            margin-bottom: 20px;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <section class="admin-dashboard">
+            <div class="container">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <h1>Dashboard</h1>
+                    <div style="display: flex; align-items: center;">
+                        <div id="userInfo"></div>
+                        <button class="logout-btn" onclick="logout()">Logout</button>
+                    </div>
+                </div>
+
+                <div class="dashboard-tabs">
+                    <button class="tab-button active" data-tab="create-post">Create Post</button>
+                    <button class="tab-button" data-tab="manage-posts">Manage Posts</button>
+                    <button class="tab-button" data-tab="contact-submissions">Job Applications</button>
+                    <button class="tab-button" data-tab="admin-management">Add Admins</button>
+                    <button class="tab-button" data-tab="profile-settings">Profile Settings</button>
+                </div>
+
+                <div id="create-post" class="tab-content active">
+                    <form id="postForm">
+                        <h2>Create New Post</h2>
+
+                        <div class="form-group">
+                            <label for="postTitle">Title</label>
+                            <input type="text" id="postTitle" name="postTitle" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="postContent">Content</label>
+                            <textarea id="postContent" name="postContent" rows="5" required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="postType">Post Type</label>
+                            <select id="postType" name="postType" required>
+                                <option value="news">NEWS</option>
+                                <option value="update">WHAT'S NEW</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="postVisibility">Visibility</label>
+                            <select id="postVisibility" name="postVisibility" required>
+                                <option value="public">Public (Visible to all users)</option>
+                                <option value="private">Private (Admins only)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="postImage">Image</label>
+                            <input type="file" id="postImage" name="postImage" accept="image/*">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit Post</button>
+                    </form>
+                </div>
+
+                <div id="manage-posts" class="tab-content">
+                    <h2>Manage Posts</h2>
+                    <div class="form-group">
+                        <label for="postFilter">Filter Posts</label>
+                        <select id="postFilter" onchange="filterPosts()">
+                            <option value="all">All Posts</option>
+                            <option value="public">Public Posts</option>
+                            <option value="private">Private Posts</option>
+                        </select>
+                    </div>
+                    <div id="postList">
+                    </div>
+                </div>
+
+<div id="contact-submissions" class="tab-content">
+    <h2>Job Applications</h2>
+    <div class="form-group">
+        <label for="applicationFilter">Filter Applications</label>
+        <select id="applicationFilter" onchange="filterApplications()">
+            <option value="all">All Applications</option>
+            <option value="New">New Application</option>
+            <option value="Under Review">Under Review</option>
+            <option value="Interview">Interview</option>
+            <option value="Accepted">Accepted</option>
+            <option value="Rejected">Rejected</option>
+        </select>
+    </div>
+    <div id="applicationList">
+    </div>
+</div>
+
+                <div id="admin-management" class="tab-content">
+                    <h2>Admin Management</h2>
+                    <form id="adminForm">
+                        <h3>Add New Admin</h3>
+                        <div class="form-group">
+                            <label for="adminUsername">Username</label>
+                            <input type="text" id="adminUsername" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="adminPassword">Password</label>
+                            <input type="password" id="adminPassword" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="adminDisplayName">Display Name (optional)</label>
+                            <input type="text" id="adminDisplayName" placeholder="Name shown on posts">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Add Admin</button>
+                    </form>
+
+                    <div id="adminList" style="margin-top: 20px;">
+                        <table class="admin-table">
+                            <thead>
+                            </thead>
+                            <tbody id="adminTableBody">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="profile-settings" class="tab-content">
+                    <h2>Profile Settings</h2>
+                    <div class="admin-profile">
+                        <h3>Your Profile</h3>
+                        <div id="profileInfo"></div>
+                        <form id="profileForm" class="profile-form">
+
+                            <div class="form-group">
+                                <label for="displayName">Display Name</label>
+                                <input type="text" id="displayName" placeholder="Name shown on your posts">
+                                <small>This is the name that will appear as the author of your posts.</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="currentPassword">Current Password</label>
+                                <input type="password" id="currentPassword" placeholder="Enter current password to confirm changes">
+                            </div>
+
+                            <div class="profile-actions">
+                                <button type="submit" class="btn btn-primary">Update Profile</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="admin-profile">
+                        <h3>Change Password</h3>
+                        <form id="passwordForm" class="profile-form">
+
+                            <div class="form-group">
+                                <label for="oldPassword">CurrentPassword</label>
+                                <input type="password" id="oldPassword" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="newPassword">New Password</label>
+                                <input type="password" id="newPassword" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="confirmPassword">Confirm New Password</label>
+                                <input type="password" id="confirmPassword" required>
+                            </div>
+
+                            <div class="profile-actions">
+                                <button type="submit" class="btn btn-primary">Change Password</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="editUsernameModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Edit Username</h3>
+                <span class="close-modal" onclick="closeModal('editUsernameModal')">&times;</span>
+            </div>
+
+            <div class="modal-body">
+                <form id="editUsernameForm">
+                    <input type="hidden" id="editAdminIndex">
+                    <div class="form-group">
+                        <label for="newUsername">New Username</label>
+                        <input type="text" id="newUsername" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="newDisplayName">Display Name</label>
+                        <input type="text" id="newDisplayName">
+                        <small>This is the name that will appear as the author of posts.</small>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn" onclick="closeModal('editUsernameModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="saveUsername()">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="resetPasswordModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Reset Password</h3>
+                <span class="close-modal" onclick="closeModal('resetPasswordModal')">&times;</span>
+            </div>
+
+            <div class="modal-body">
+                <form id="resetPasswordForm">
+                    <input type="hidden" id="resetAdminIndex">
+                    <div class="form-group">
+                        <label for="resetPassword">New Password</label>
+                        <input type="password" id="resetPassword" required>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button class="btn" onclick="closeModal('resetPasswordModal')">Cancel</button>
+                <button class="btn btn-primary" onclick="saveNewPassword()">Reset Password</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        if (!localStorage.getItem('adminAccounts')) {
+            const defaultAdmins = [
+                { username: 'admin1', password: 'password1', displayName: 'Administrator 1' },
+                { username: 'admin2', password: 'password2', displayName: 'Administrator 2' }
+            ];
+            localStorage.setItem('adminAccounts', JSON.stringify(defaultAdmins));
+        }
+
+        const currentUser = localStorage.getItem('currentUser');
+        const adminAccounts = JSON.parse(localStorage.getItem('adminAccounts')) || [];
+        const currentAdmin = adminAccounts.find(admin => admin.username === currentUser);
+        if (!currentUser || !currentAdmin) {
+            window.location.href = './login.html';
+        }
+
+        const userInfo = document.getElementById('userInfo');
+        userInfo.textContent = `Logged in as: ${currentAdmin.displayName || currentUser}`;
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabContents = document.querySelectorAll('.tab-content');
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const tabId = button.getAttribute('data-tab');
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                button.classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+                if (tabId === 'profile-settings') {
+                    loadProfileData();
+                }
+            });
+        });
+
+        const postForm = document.getElementById('postForm');
+        const postList = document.getElementById('postList');
+        postForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const title = document.getElementById('postTitle').value;
+            const content = document.getElementById('postContent').value;
+            const type = document.getElementById('postType').value;
+            const visibility = document.getElementById('postVisibility').value;
+            const date = new Date().toLocaleString();
+            const imageFile = document.getElementById('postImage').files[0];
+            if (imageFile) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const imageData = e.target.result;
+                    savePost(title, content, type, visibility, date, imageData);
+                };
+                reader.readAsDataURL(imageFile);
+            } 
+            else {
+                savePost(title, content, type, visibility, date);
+            }
+        });
+
+        function savePost(title, content, type, visibility, date, imageData = null) {
+            const adminAccounts = JSON.parse(localStorage.getItem('adminAccounts')) || [];
+            const currentAdmin = adminAccounts.find(admin => admin.username === currentUser);
+            const authorName = currentAdmin.displayName || currentUser;
+            const post = { 
+                title, 
+                content, 
+                type, 
+                visibility, 
+                date, 
+                author: authorName,
+                authorUsername: currentUser,
+                image: imageData 
+            };
+
+            let posts = JSON.parse(localStorage.getItem('posts')) || [];
+            posts.unshift(post);
+            localStorage.setItem('posts', JSON.stringify(posts));
+            postForm.reset();
+            displayPosts();
+            alert(`Post created successfully! Visibility: ${visibility}`);
+        }
+
+        function displayPosts() {
+            const filterValue = document.getElementById('postFilter')?.value || 'all';
+            const posts = JSON.parse(localStorage.getItem('posts')) || [];
+            postList.innerHTML = '';
+            const filteredPosts = filterValue === 'all' 
+                ? posts 
+                : posts.filter(post => post.visibility === filterValue);
+            if (filteredPosts.length === 0) {
+                postList.innerHTML = '<p>No posts found.</p>';
+            return;
+            }
+
+            filteredPosts.forEach((post, index) => {
+                const postElement = document.createElement('div');
+                postElement.classList.add('post', post.visibility || 'public');
+                let postContent = `
+                    <div class="post-header">
+                        <h3 class="post-title">${post.title}</h3>
+                        <span class="post-badge ${post.visibility || 'public'}">${post.visibility || 'public'}</span>
+                    </div>
+                    <div class="post-content">${post.content}</div>
+                `;
+
+                if (post.image) {
+                    postContent += `<img src="${post.image}" alt="${post.title}" class="post-image">`;
+                }
+
+                postContent += `
+                    <div class="post-meta"> 
+                        Type: ${post.type} | Posted by: ${post.author} on ${post.date}
+                    </div>
+                    <div class="post-actions">
+                        <button class="btn-edit" onclick="editPost(${posts.indexOf(post)})">Edit</button>
+                        <button class="btn-delete" onclick="deletePost(${posts.indexOf(post)})">Delete</button>
+                        <button class="btn-visibility" onclick="toggleVisibility(${posts.indexOf(post)})">
+                            ${post.visibility === 'private' ? 'Make Public' : 'Make Private'}
+                        </button>
+                    </div>
+                `;
+
+                postElement.innerHTML = postContent;
+                postList.appendChild(postElement);
+            });
+        }
+
+        function filterPosts() {
+            displayPosts();
+        }
+
+        function displayAdmins() {
+            const adminAccounts = JSON.parse(localStorage.getItem('adminAccounts')) || [];
+            const adminCount = document.getElementById('adminCount');
+            const adminTableBody = document.getElementById('adminTableBody');
+            adminCount.textContent = adminAccounts.length;
+            adminTableBody.innerHTML = '';
+            if (adminAccounts.length === 0) {
+                adminTableBody.innerHTML = '<tr><td colspan="3">No admins found.</td></tr>';
+            return;
+            }
+
+            adminAccounts.forEach((admin, index) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${admin.username}</td>
+                    <td>${admin.displayName || '<em>Not set</em>'}</td>
+                    <td class="admin-actions">
+                        <button class="btn-edit-username" onclick="openEditUsernameModal(${index})">
+                            Edit Username
+                        </button>
+                        <button class="btn-reset-password" onclick="openResetPasswordModal(${index})">
+                            Reset Password
+                        </button>
+                        <button class="btn-delete" onclick="deleteAdmin(${index})" ${admin.username === currentUser ? 'disabled' : ''}>
+                            ${admin.username === currentUser ? 'Current User' : 'Delete'}
+                        </button>
+                    </td>
+                `;
+                adminTableBody.appendChild(row);
+            });
+        }
+
+        function loadProfileData() {
+            const adminAccounts = JSON.parse(localStorage.getItem('adminAccounts')) || [];
+            const currentAdmin = adminAccounts.find(admin => admin.username === currentUser);
+            if (currentAdmin) {
+                const profileInfo = document.getElementById('profileInfo');
+                profileInfo.innerHTML = `
+                    <p><strong>Username:</strong> ${currentAdmin.username}</p>
+                    <p><strong>Display Name:</strong> ${currentAdmin.displayName || '<em>Not set</em>'}</p>
+                `;
+                document.getElementById('displayName').value = currentAdmin.displayName || '';
+            }
+        }
+
+        function deletePost(index) {
+            if (confirm('Are you sure you want to delete this post?')) {
+                let posts = JSON.parse(localStorage.getItem('posts')) || [];
+                posts.splice(index, 1);
+                localStorage.setItem('posts', JSON.stringify(posts));
+                displayPosts();
+            }
+        }
+
+        function editPost(index) {
+            let posts = JSON.parse(localStorage.getItem('posts')) || [];
+            const post = posts[index];
+            document.getElementById('postTitle').value = post.title;
+            document.getElementById('postContent').value = post.content;
+            document.getElementById('postType').value = post.type;
+            document.getElementById('postVisibility').value = post.visibility || 'public';
+            posts.splice(index, 1);
+            localStorage.setItem('posts', JSON.stringify(posts));
+            document.querySelector('[data-tab="create-post"]').click();
+            displayPosts();
+        }
+
+function toggleVisibility(index) {
+    let posts = JSON.parse(localStorage.getItem('posts')) || [];
+    const post = posts[index];
+    post.visibility = post.visibility === 'private' ? 'public' : 'private';
+    localStorage.setItem('posts', JSON.stringify(posts));
+    displayPosts();
+    alert(`Post visibility changed to: ${post.visibility}`);
+}
+
+document.getElementById('adminForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const adminAccounts = JSON.parse(localStorage.getItem('adminAccounts')) || [];
+    if (adminAccounts.length >= 100) {
+        alert('Maximum number of admins (100) reached. Please delete some admins before adding new ones.');
+    return;
+    }
+
+    const username = document.getElementById('adminUsername').value;
+    const password = document.getElementById('adminPassword').value;
+    const displayName = document.getElementById('adminDisplayName').value;
+    if (adminAccounts.some(admin => admin.username === username)) {
+        alert('Username already exists. Please choose a different username.');
+    return;
+    }
+
+    adminAccounts.push({ username, password, displayName });
+    localStorage.setItem('adminAccounts', JSON.stringify(adminAccounts));
+    document.getElementById('adminUsername').value = '';
+    document.getElementById('adminPassword').value = '';
+    document.getElementById('adminDisplayName').value = '';
+    displayAdmins();
+    alert('Admin added successfully!');
+});
+
+function deleteAdmin(index) {
+    const adminAccounts = JSON.parse(localStorage.getItem('adminAccounts')) || [];
+    const adminToDelete = adminAccounts[index];
+    if (adminToDelete.username === currentUser) {
+        alert('You cannot delete your own account while logged in.');
+    return;
+    }
+
+    if (confirm(`Are you sure you want to delete admin "${adminToDelete.username}"?`)) {
+        adminAccounts.splice(index, 1);
+        localStorage.setItem('adminAccounts', JSON.stringify(adminAccounts));
+        displayAdmins();
+    }
+}
+
+function openEditUsernameModal(index) {
+    const adminAccounts = JSON.parse(localStorage.getItem('adminAccounts')) || [];
+    const admin = adminAccounts[index];
+    document.getElementById('editAdminIndex').value = index;
+    document.getElementById('newUsername').value = admin.username;
+    document.getElementById('newDisplayName').value = admin.displayName || '';
+    document.getElementById('editUsernameModal').style.display = 'block';
+}
+
+function openResetPasswordModal(index) {
+    document.getElementById('resetAdminIndex').value = index;
+    document.getElementById('resetPassword').value = '';
+    document.getElementById('resetPasswordModal').style.display = 'block';
+}
+
+function closeModal(modalId) {
+    document.getElementById(modalId).style.display = 'none';
+}
+
+function saveUsername() {
+    const index = parseInt(document.getElementById('editAdminIndex').value);
+    const newUsername = document.getElementById('newUsername').value;
+    const newDisplayName = document.getElementById('newDisplayName').value;
+    if (!newUsername) {
+        alert('Username cannot be empty.');
+    return;
+    }
+
+    const adminAccounts = JSON.parse(localStorage.getItem('adminAccounts')) || [];
+    if (adminAccounts.some((admin, i) => i !== index && admin.username === newUsername)) {
+        alert('Username already exists. Please choose a different username.');
+    return;
+    }
+
+    const oldUsername = adminAccounts[index].username;
+    adminAccounts[index].username = newUsername;
+    adminAccounts[index].displayName = newDisplayName;
+    localStorage.setItem('adminAccounts', JSON.stringify(adminAccounts));
+    updatePostAuthor(oldUsername, newUsername, newDisplayName);
+    if (oldUsername === currentUser) {
+        localStorage.setItem('currentUser', newUsername);
+        userInfo.textContent = `Logged in as: ${newDisplayName || newUsername}`;
+    }
+
+    closeModal('editUsernameModal');
+    displayAdmins();  
+    alert('Username updated successfully!');
+}
+
+function updatePostAuthor(oldUsername, newUsername, newDisplayName) {
+    const posts = JSON.parse(localStorage.getItem('posts')) || [];
+    posts.forEach(post => {
+        if (post.authorUsername === oldUsername) {
+            post.authorUsername = newUsername;
+            post.author = newDisplayName || newUsername;
+        }
+    });
+
+    localStorage.setItem('posts', JSON.stringify(posts));
+    if (document.getElementById('manage-posts').classList.contains('active')) {
+        displayPosts();
+    }
+}
+
+function saveNewPassword() {
+    const index = parseInt(document.getElementById('resetAdminIndex').value);
+    const newPassword = document.getElementById('resetPassword').value;
+    if (!newPassword) {
+        alert('Password cannot be empty.');
+    return;
+    }
+
+    const adminAccounts = JSON.parse(localStorage.getItem('adminAccounts')) || [];
+    adminAccounts[index].password = newPassword;
+    localStorage.setItem('adminAccounts', JSON.stringify(adminAccounts));
+    closeModal('resetPasswordModal');  
+    alert('Password reset successfully!');
+}
+
+document.getElementById('profileForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const displayName = document.getElementById('displayName').value;
+    const currentPassword = document.getElementById('currentPassword').value;
+    const adminAccounts = JSON.parse(localStorage.getItem('adminAccounts')) || [];
+    const currentAdminIndex = adminAccounts.findIndex(admin => admin.username === currentUser);
+    if (currentAdminIndex === -1) {
+        alert('Error: Admin account not found.');
+    return;
+    }
+
+    if (adminAccounts[currentAdminIndex].password !== currentPassword) {
+        alert('Current password is incorrect.');
+    return;
+    }
+
+    const oldDisplayName = adminAccounts[currentAdminIndex].displayName;
+    adminAccounts[currentAdminIndex].displayName = displayName;
+    localStorage.setItem('adminAccounts', JSON.stringify(adminAccounts));
+    updatePostAuthor(currentUser, currentUser, displayName);
+    userInfo.textContent = `Logged in as: ${displayName || currentUser}`;
+    loadProfileData();
+    document.getElementById('currentPassword').value = '';
+    alert('Profile updated successfully!');
+});
+
+document.getElementById('passwordForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const oldPassword = document.getElementById('oldPassword').value;
+    const newPassword = document.getElementById('newPassword').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
+    if (newPassword !== confirmPassword) {
+        alert('New passwords do not match.');
+    return;
+    }
+
+    const adminAccounts = JSON.parse(localStorage.getItem('adminAccounts')) || [];
+    const currentAdminIndex = adminAccounts.findIndex(admin => admin.username === currentUser);
+    if (currentAdminIndex === -1) {
+        alert('Error: Admin account not found.');
+    return;
+    }
+
+    if (adminAccounts[currentAdminIndex].password !== oldPassword) {
+        alert('Current password is incorrect.');
+    return;
+    }
+
+    adminAccounts[currentAdminIndex].password = newPassword;
+    localStorage.setItem('adminAccounts', JSON.stringify(adminAccounts));
+    document.getElementById('oldPassword').value = '';
+    document.getElementById('newPassword').value = '';
+    document.getElementById('confirmPassword').value = '';
+    alert('Password changed successfully!');
+});
+
+function logout() {
+    localStorage.removeItem('currentUser');
+    window.location.href = './about.html';
+}
+
+window.onclick = function(event) {
+    if (event.target.classList.contains('modal')) {
+        event.target.style.display = 'none';
+    }
+};
+
+displayPosts();
+displayAdmins();
+
+function displayApplications() {
+    const filterValue = document.getElementById('applicationFilter')?.value || 'all';
+    const applications = JSON.parse(localStorage.getItem('jobApplications')) || [];
+    const applicationList = document.getElementById('applicationList');
+    applicationList.innerHTML = '';
+    if (applications.length === 0) {
+        applicationList.innerHTML = '<p>No job applications yet.</p>';
+    return;
+    }
+
+    const filteredApplications = filterValue === 'all' 
+        ? applications 
+        : applications.filter(app => app.status === filterValue);
+
+    if (filteredApplications.length === 0) {
+        applicationList.innerHTML = '<p>No applications with the selected status.</p>';
+    return;
+    }
+
+    filteredApplications.forEach((application, index) => {
+        const applicationElement = document.createElement('div');
+        applicationElement.classList.add('contact-item');
+        let resumePreview = '';
+        if (application.resumeData) {
+            const fileType = application.resumeFileType || '';
+            if (fileType.includes('image') || application.resumeFileName?.match(/\.(jpg|jpeg|png|gif)$/i)) {
+                resumePreview = `
+                    <div style="margin: 10px 0;">
+                        <img src="${application.resumeData}" alt="Resume Image" style="max-width: 100%; max-height: 300px;">
+                    </div>
+                    <p><a href="${application.resumeData}" download="${application.resumeFileName || 'resume'}">Download Resume</a></p>
+                `;
+            } 
+
+            else if (fileType.includes('pdf') || application.resumeFileName?.endsWith('.pdf')) {
+                resumePreview = `
+                    <div style="margin: 10px 0;">
+                        <embed src="${application.resumeData}" type="application/pdf" width="100%" height="300px" />
+                    </div>
+                    <p><a href="${application.resumeData}" download="${application.resumeFileName || 'resume.pdf'}">Download Resume</a></p>
+                `;
+            } 
+
+            else if (fileType.includes('word') || fileType.includes('document') || application.resumeFileName?.match(/\.(doc|docx)$/i)) {
+                resumePreview = `
+                    <div style="margin: 10px 0; padding: 15px; background-color: #f5f5f5; border: 1px solid #ddd; border-radius: 4px;">
+                        <p><i class="fas fa-file-word" style="color: #2b579a; margin-right: 10px;"></i> Word Document: ${application.resumeFileName || 'resume.docx'}</p>
+                    </div>
+                    <p><a href="${application.resumeData}" download="${application.resumeFileName || 'resume.docx'}">Download Resume</a></p>
+                `;
+            } 
+
+            else {
+                resumePreview = `
+                    <div style="margin: 10px 0; padding: 15px; background-color: #f5f5f5; border: 1px solid #ddd; border-radius: 4px;">
+                        <p><i class="fas fa-file" style="margin-right: 10px;"></i> File: ${application.resumeFileName || 'resume'}</p>
+                    </div>
+                    <p><a href="${application.resumeData}" download="${application.resumeFileName || 'resume'}">Download Resume</a></p>
+                `;
+                
+            }
+        } 
+
+        else if (application.resume) {
+            resumePreview = `<p>${application.resume}</p>`;
+        }
+
+        applicationElement.innerHTML = `
+            <div class="contact-header">
+                <h3 class="contact-name">${application.fullName} - ${application.position}</h3>
+                <div>
+                    <select class="status-select" onchange="updateApplicationStatus(${applications.indexOf(application)}, this.value)">
+                        <option value="New" ${application.status === 'New' ? 'selected' : ''}>New</option>
+                        <option value="Under Review" ${application.status === 'Under Review' ? 'selected' : ''}>Under Review</option>
+                        <option value="Interview" ${application.status === 'Interview' ? 'selected' : ''}>Interview</option>
+                        <option value="Accepted" ${application.status === 'Accepted' ? 'selected' : ''}>Accepted</option>
+                        <option value="Rejected" ${application.status === 'Rejected' ? 'selected' : ''}>Rejected</option>
+                    </select>
+                    <button class="btn-delete" onclick="deleteApplication(${applications.indexOf(application)})">Delete</button>
+                </div>
+            </div>
+
+            <div class="contact-details">
+                <p><strong>Email:</strong> ${application.email}</p>
+                <p><strong>Phone:</strong> ${application.phone}</p>
+                <p><strong>Date of Birth:</strong> ${application.dateOfBirth}</p>
+                <p><strong>Gender:</strong> ${application.gender}</p>
+                <p><strong>Position:</strong> ${application.position}</p>
+                <p><strong>Preferred Location:</strong> ${application.location}</p>
+                <p><strong>Years of Experience:</strong> ${application.experience}</p>
+            </div>
+
+            <div class="contact-message">
+                <h4>Resume/CV:</h4>
+                ${resumePreview}
+            </div>
+            ${application.question ? `
+            <div class="contact-message">
+                <h4>Question:</h4>
+                <p>${application.question}</p>
+            </div>
+            ` : ''}
+            <div class="contact-date">
+                Submitted on: ${application.date}
+            </div>
+        `;
+        applicationList.appendChild(applicationElement);
+    });
+}
+
+function updateApplicationStatus(index, newStatus) {
+    let applications = JSON.parse(localStorage.getItem('jobApplications')) || [];
+    applications[index].status = newStatus;
+    localStorage.setItem('jobApplications', JSON.stringify(applications));
+    if (document.getElementById('applicationFilter').value !== 'all') {
+        displayApplications();
+    }
+}
+
+function filterApplications() {
+    displayApplications();
+}
+
+function deleteApplication(index) {
+    if (confirm('Are you sure you want to delete this job application?')) {
+        let applications = JSON.parse(localStorage.getItem('jobApplications')) || [];
+        applications.splice(index, 1);
+        localStorage.setItem('jobApplications', JSON.stringify(applications));
+        displayApplications();
+    }
+}
+
+    document.querySelector('[data-tab="contact-submissions"]').textContent = 'Job Applications';
+        </script>
+    </body>
+</html>

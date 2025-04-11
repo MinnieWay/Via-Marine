@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Contacts</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/viamarine.jpg">
+    <link rel="icon" type="image/png" sizes="16x16" href="./assets/favicon/viamarine.jpg">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css2?family=Aldrich&family=Francois+One&family=Inconsolata:wght@300;400;600;900&family=Karla:wght@300;400;500;600;800&family=Lato:wght@300;400;900&family=Lora:wght@400;500;600;700&family=Merriweather:wght@300;400;700;900&family=Montserrat:wght@200;300;400;500;600;700;900&family=Nunito:wght@200;300;400;600;700;900&family=Open+Sans:wght@400;600;700;800&family=Oswald:wght@300;400;500;600;700&family=Poppins:wght@100;200;300;400;500;600;700;900&family=Proza+Libre:wght@400;500;600;700;800&family=Raleway:wght@200;300;400;600;900&family=Roboto+Slab:wght@200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&family=Work+Sans:wght@200;400;500;600;700;900&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="../assets/css/common.css" />
+    <link rel="stylesheet" href="../assets/css/header.css" />
+    <link rel="stylesheet" href="../assets/css/contacts.css" />
+    
+</head>
+<body>
+    <header>
+        <h1 class="title-1">
+        <span class="via">Via</span>
+        <span class="marine">Marine</span>
+    </h1>
+
+    <nav>
+        <ul class="menu">
+            <li class="nav-list">
+                <a class="nav-link" href="../index.html">Home</a>
+            </li>
+            <li class="nav-list">
+                <a class="nav-link" href="./about.html">About</a>
+            </li>
+            <li class="nav-list">
+                <a class="nav-link" href="./projects.html">Ships</a>
+            </li>
+            <li class="nav-list">
+                <a class="nav-link active" href="./contacts.html">Contacts</a>
+            </li>
+            <li class="nav-list">
+                <a class="nav-link" href="./names.html">Names</a>
+            </li>
+            <li class="nav-list">
+                <a class="nav-link" href="./login.html">Log In</a>
+            </li>
+            <li class="nav-list">
+                <a class="nav-link" href="./whats_new.html">What's New</a>
+            </li>
+        </ul>
+    </nav>
+    </header>
+    </head>
+
+    <body> 
+        <br> <br> <br> <br> <br> <br>
+        <section class="contact-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Get In Touch</h2>
+                    <p>Contact our team for inquiries about our vessels and services</p>
+                </div>
+
+                <div class="contact-content">
+                    <div class="contact-form-container">
+                        <div class="form-card">
+                            <h3>Send Us a Message</h3>
+                            <form id="contactForm" class="contact-form">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="name">Full Name</label>
+                                        <input type="text" id="name" name="name" placeholder="Your name" required>
+                                        <span class="error-message" id="nameError"></span>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="email">Email Address</label>
+                                        <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                                        <span class="error-message" id="emailError"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="phone">Phone Number</label>
+                                    <input type="tel" id="phone" name="phone" placeholder="Your phone number" required>
+                                    <span class="error-message" id="phoneError"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="subject">Subject</label>
+                                    <input type="text" id="subject" name="subject" placeholder="Subject of your message" required>
+                                    <span class="error-message" id="subjectError"></span>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="message">Message</label>
+                                    <textarea id="message" name="message" rows="5" placeholder="Your message here..." required></textarea>
+                                    <span class="error-message" id="messageError"></span>
+                                </div>                              
+                                <button type="submit" class="btn btn-primary btn-full">Send Message</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="contact-info">
+                        <div class="info-card">
+                            <h3>Contacts</h3>
+                            <div class="info-items">
+                                <div class="info-item">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                    <div class="info-content">
+                                        <h4>Head Office Address</h4>
+                                        <p>111 P. Aquino Ave. Longos, Malabon City<br>Philippines 1472</p>
+                                    </div>
+                                </div>
+
+                                <div class="info-item">
+                                    <i class="fa-solid fa-phone"></i>
+                                    <div class="info-content">
+                                        <h4>Phone Numbers</h4>
+                                        <p>+63 (2) 8123 4567 (Office)</p>
+                                    </div>
+                                </div>
+
+                                <div class="info-item">
+                                    <i class="fa-solid fa-envelope"></i>
+                                    <div class="info-content">
+                                        <h4>Email Addresses</h4>
+                                        <p>crewing@viamarine.com<br>operations@viamarine.com</p>
+                                    </div>
+                                </div>
+
+                                <div class="info-item">
+                                    <i class="fa-solid fa-clock"></i>
+                                    <div class="info-content">
+                                        <h4>Business Hours</h4>
+                                        <p>Monday to Friday: 7:00 AM - 5:00 PM<br>Saturday-Sunday: Closed</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="map-container">
+                            <iframe 
+                                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3859.9288488562797!2d120.9553624!3d14.6599792!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b54a15eac889%3A0x96d1a0f359f19bf!2sVia%20Marine%20Corporation!5e0!3m2!1sen!2sph!4v1742526300290!5m2!1sen!2sph" 
+                                allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="locations-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Our Warehouse</h2>
+                    <p>Via Marine operates offices throughout Metro Manila</p>
+                </div>
+
+                <div class="locations-grid">
+                    <div class="location-card">
+                        <div class="location-icon">
+                            <i class="fa-solid fa-building"></i>
+                        </div>
+                        <h3>Manila (Head Office)</h3>
+                        <p>NBBS NAVOTAS CITY<br>Manila, Philippines 1018</p>
+                        <p><strong>Phone:</strong> +63 (2) 8123 4567</p>
+                        <p><strong>Email:</strong> viamarine_emelangpo@gmail.com</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="faq-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Frequently Asked Questions</h2>
+                    <p>Common inquiries about our maritime services</p>
+                </div>
+
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>What types of vessels does Via Marine operate?</h3>
+                            <button class="faq-toggle"><i class="fas fa-plus"></i></button>
+                        </div>
+
+                        <div class="faq-answer">
+                            <p>Via Marine operates a diverse fleet including oil tankers, chemical carriers, container ships, and RoRo (Roll-on/Roll-off) passenger vessels. Our fleet serves various cargo and passenger transportation needs throughout the Philippine archipelago.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>How can I inquire about chartering a vessel?</h3>
+                            <button class="faq-toggle"><i class="fas fa-plus"></i></button>
+                        </div>
+
+                        <div class="faq-answer">
+                            <p>For vessel charter inquiries, please contact our operations department directly at operations@viamarine.com or call +63 (2) 8765 4321. Our team will assist you with vessel availability, rates, and charter requirements.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>What safety standards does Via Marine follow?</h3>
+                            <button class="faq-toggle"><i class="fas fa-plus"></i></button>
+                        </div>
+
+                        <div class="faq-answer">
+                            <p>Via Marine strictly adheres to international maritime safety standards, including ISM Code, SOLAS, and MARPOL regulations. Our vessels are regularly audited and inspected to ensure compliance with all safety and environmental protection requirements.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>What are your container shipping routes?</h3>
+                            <button class="faq-toggle"><i class="fas fa-plus"></i></button>
+                        </div>
+
+                        <div class="faq-answer">
+                            <p>Our container shipping services in the Philippines. We also offer feeder services to national shipping lines for cargo bound for destinations outside the Philippines.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-column">
+                        <div class="footer-logo">
+                            <i class="fa-solid fa-anchor"></i>
+                            Via Marine
+                        </div>
+
+                        <p>Providing excellence in maritime transportation across the Philippine archipelago since 2005.</p>
+                        <div class="social-links">
+                            <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="footer-column">
+                        <h3>Quick Links</h3>
+                        <ul class="footer-links">
+                            <li><a href="projects.html">Projects</a></li>
+                            <li><a href="about.html">About Us</a></li>
+                            <li><a href="contacts.html">Contact</a></li>
+                            <li><a href="news.html">News</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h3>Services</h3>
+                        <ul class="footer-links">
+                            <li><a href="#">Oil Transportation</a></li>
+                            <li><a href="#">Ship Management</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-column">
+                        <h3>Newsletter</h3>
+                        <p>Subscribe to our newsletter for the latest updates.</p>
+                        <form class="newsletter-form">
+                            <div class="form-group">
+                                <input type="email" placeholder="Your email address" required>
+                                <button type="submit"><i class="fas fa-arrow-right"></i></button>
+                            </div>
+                        </form>
+
+                        <p class="small-text">We respect your privacy. Unsubscribe at any time.</p>
+                    </div>
+                </div>
+
+                <div class="footer-bottom">
+                    <div class="copyright">
+                        &copy; <span id="currentYear"></span> Via Marine. All rights reserved.
+                    </div>
+
+                    <div class="footer-legal">
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Terms of Service</a>
+                        <a href="#">Cookies Policy</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const faqToggles = document.querySelectorAll('.faq-toggle');
+                faqToggles.forEach(toggle => {
+                    toggle.addEventListener('click', () => {
+                        const faqItem = toggle.closest('.faq-item');
+                        const faqAnswer = faqItem.querySelector('.faq-answer');
+                        const icon = toggle.querySelector('i');
+                        faqAnswer.classList.toggle('active');
+                        if (icon.classList.contains('fa-plus')) {
+                            icon.classList.remove('fa-plus');
+                            icon.classList.add('fa-minus');
+                        } 
+                        else {
+                            icon.classList.remove('fa-minus');
+                            icon.classList.add('fa-plus');
+                        }
+                    });
+                });
+            });
+            </script>
+        </body>
+    </html>

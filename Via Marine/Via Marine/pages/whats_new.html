@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>What's New - Via Marine</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/viamarine.jpg">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon/viamarine.jpg">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css2?family=Arial:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/common.css">
+    <link rel="stylesheet" href="../assets/css/header.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            background-color: #f8f9fa;
+            line-height: 1.6;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        .page-header {
+            background-color: #0C4A6E;
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            position: relative;
+            margin-bottom: 50px;
+        }
+
+        .page-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50px;
+            background: linear-gradient(to right bottom, #0C4A6E 49%, #f8f9fa 50%);
+        }
+
+        .page-header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .page-header p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        .news-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
+        }
+
+        .filter-controls {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: transparent;
+            border: 2px solid #0C4A6E;
+            color: #0C4A6E;
+            padding: 10px 22px;
+            margin: 0 8px 10px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .filter-btn.active {
+            background: #0C4A6E;
+            color: white;
+        }
+
+        .filter-btn:hover:not(.active) {
+            background: rgba(12, 74, 110, 0.1);
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .news-item {
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            border: 1px solid #eaeaea;
+        }
+
+        .news-item:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+        }
+
+        .news-image-container {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .news-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .news-item:hover .news-image {
+            transform: scale(1.08);
+        }
+
+        .news-placeholder {
+            background-color: #f1f1f1;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .news-placeholder i {
+            font-size: 3.5rem;
+            color: #ddd;
+        }
+
+        .news-content {
+            padding: 25px;
+            position: relative;
+        }
+
+        .news-type {
+            position: absolute;
+            top: -15px;
+            left: 25px;
+            display: inline-block;
+            padding: 5px 15px;
+            background: #4CAF50;
+            color: white;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            box-shadow: 0 3px 8px rgba(76, 175, 80, 0.3);
+        }
+
+        .news-type.update {
+            background: #2196F3;
+            box-shadow: 0 3px 8px rgba(33, 150, 243, 0.3);
+        }
+
+        .news-title {
+            font-size: 1.3rem;
+            margin: 10px 0 15px;
+            color: #222;
+            line-height: 1.4;
+            font-weight: 600;
+        }
+
+        .news-excerpt {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        .news-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: #888;
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+
+        .news-meta span {
+            display: flex;
+            align-items: center;
+        }
+
+        .news-meta i {
+            margin-right: 5px;
+        }
+
+        .no-posts {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 60px 30px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 1px dashed #ddd;
+        }
+
+        .no-posts i {
+            font-size: 3rem;
+            color: #ddd;
+            margin-bottom: 20px;
+        }
+
+        .no-posts h3 {
+            color: #555;
+            margin-bottom: 10px;
+            font-size: 1.5rem;
+        }
+
+        .no-posts p {
+            color: #888;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.75);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 5% auto;
+            padding: 0;
+            border-radius: 10px;
+            width: 85%;
+            max-width: 900px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            position: relative;
+            animation: modalFadeIn 0.4s;
+            overflow: hidden;
+        }
+
+        @keyframes modalFadeIn {
+            from {opacity: 0; transform: translateY(-40px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            z-index: 10;
+            text-shadow: 0 0 5px rgba(0,0,0,0.5);
+        }
+
+        .close-modal:hover {
+            color: #f1f1f1;
+        }
+
+        .modal-image-container {
+            height: 350px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .modal-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 150px;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        .modal-title {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: #222;
+            line-height: 1.3;
+        }
+
+        .modal-content-text {
+            line-height: 1.8;
+            color: #444;
+            margin-bottom: 25px;
+            font-size: 1.05rem;
+        }
+
+        .modal-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: #888;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+
+        .modal-meta span {
+            display: flex;
+            align-items: center;
+        }
+
+        .modal-meta i {
+            margin-right: 8px;
+        }
+
+        @media (max-width: 992px) {
+            .news-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+            
+            .modal-content {
+                width: 90%;
+            }
+            
+            .modal-image-container {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-header {
+                padding: 40px 0;
+            }
+            
+            .page-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .news-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                gap: 20px;
+            }
+            
+            .filter-btn {
+                padding: 8px 16px;
+                margin: 0 5px 8px;
+                font-size: 0.85rem;
+            }
+            
+            .modal-content {
+                width: 95%;
+                margin: 10% auto;
+            }
+            
+            .modal-image-container {
+                height: 250px;
+            }
+            
+            .modal-title {
+                font-size: 1.6rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .news-item {
+                max-width: 400px;
+                margin: 0 auto;
+            }
+            
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .page-header p {
+                font-size: 1rem;
+                padding: 0 20px;
+            }
+            
+            .modal-image-container {
+                height: 200px;
+            }
+            
+            .modal-body {
+                padding: 20px;
+            }
+            
+            .modal-title {
+                font-size: 1.4rem;
+            }
+            
+            .modal-content-text {
+                font-size: 0.95rem;
+            }
+        }
+        </style>
+    </head>
+
+<body>
+    <header>
+        <h1 class="title-1">
+            <span class="via">Via</span>
+            <span class="marine">Marine</span>
+        </h1>
+        <nav>
+            <ul class="menu">
+                <li class="nav-list">
+                    <a class="nav-link" href="../index.html">Home</a>
+                </li>
+                <li class="nav-list">
+                    <a class="nav-link" href="./about.html">About</a>
+                </li>
+                <li class="nav-list">
+                    <a class="nav-link" href="./projects.html">Ships</a>
+                </li>
+                <li class="nav-list">
+                    <a class="nav-link" href="./contacts.html">Contacts</a>
+                </li>
+                <li class="nav-list">
+                    <a class="nav-link" href="./names.html">Names</a>
+                </li>
+                <li class="nav-list">
+                    <a class="nav-link" href="./login.html">Log In</a>
+                </li>
+                <li class="nav-list">
+                    <a class="nav-link active" href="./whats_new.html">What's New</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="page-header">
+            <div class="container">
+                <h1>What's New at Via Marine</h1>
+                <p>Stay updated with the latest news, announcements, and developments from our company.</p>
+            </div>
+        </div>
+
+        <section class="news-container">
+            <br>
+            <div class="filter-controls">
+                <button class="filter-btn active" data-filter="all">All Updates</button>
+                <button class="filter-btn" data-filter="news">Company News</button>
+                <button class="filter-btn" data-filter="update">Updates</button>
+            </div>
+            <div class="news-grid" id="newsGrid">
+            </div>
+        </section>
+
+        <div id="postModal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal" onclick="closeModal()">&times;</span>
+                <div id="modalContent">
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        if (!localStorage.getItem('posts')) {
+            const samplePosts = [
+                {
+                    title: "New Vessel Added to Our Fleet",
+                    content: "We are pleased to announce the addition of a new vessel to our fleet. The MV Oceanic Explorer is a state-of-the-art oil tanker with advanced safety features and environmentally friendly technology. This addition strengthens our capacity to serve our clients with greater efficiency and reliability.<br><br>The vessel has successfully completed all necessary inspections and certifications, and is now ready for operations. Our crew has undergone extensive training to ensure smooth operations and adherence to the highest safety standards.<br><br>We look forward to the contributions this vessel will make to our service offerings.",
+                    author: "Fleet Management",
+                    date: "2025-11-15",
+                    type: "News",
+                    visibility: "Public",
+                    image: "https://images.unsplash.com/photo-1520095972714-909e91b038e5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
+                },
+
+                {
+                    title: "Safety Protocol Updates",
+                    content: "Via Marine is committed to maintaining the highest standards of safety in all our operations. We have recently updated our safety protocols to incorporate the latest industry best practices and regulatory requirements.<br><br>Key updates include:<br>• Enhanced emergency response procedures<br>• Updated crew training modules<br>• Improved vessel maintenance schedules<br>• Advanced monitoring systems for environmental compliance<br><br>All crew members will undergo refresher training on these updated protocols. We believe these enhancements will further strengthen our safety record and ensure the well-being of our crew, vessels, and the environment.",
+                    author: "Safety Department",
+                    date: "2025-10-28",
+                    type: "Update",
+                    visibility: "Public",
+                    image: "https://images.unsplash.com/photo-1504639725590-34d0984388bd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80"
+                },
+
+                {
+                    title: "Via Marine Receives Industry Recognition",
+                    content: "We are proud to announce that Via Marine has been recognized with the Maritime Excellence Award for our commitment to safety, environmental responsibility, and operational efficiency.<br><br>This prestigious award acknowledges our continuous efforts to implement best practices in the maritime industry and our dedication to exceeding regulatory requirements. The selection committee particularly noted our innovative approach to reducing environmental impact and our comprehensive crew welfare programs.<br><br>We extend our gratitude to all our employees whose hard work and dedication have made this achievement possible. This recognition motivates us to continue striving for excellence in all aspects of our operations.",
+                    author: "Corporate Communications",
+                    date: "2025-09-10",
+                    type: "News",
+                    visibility: "Public",
+                    image: "https://images.unsplash.com/photo-1551269901-5c5e14c25df7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80"
+                }
+            ];
+            localStorage.setItem('posts', JSON.stringify(samplePosts));
+        }
+
+        function displayPublicPosts(filter = 'all') {
+            const posts = JSON.parse(localStorage.getItem('posts')) || [];
+            const newsGrid = document.getElementById('newsGrid');          
+            let filteredPosts = posts.filter(post => post.visibility === 'public' || post.visibility === undefined);
+            if (filter !== 'all') {
+                filteredPosts = filteredPosts.filter(post => post.type === filter);
+            }
+
+            newsGrid.innerHTML = '';
+            if (filteredPosts.length === 0) {
+                newsGrid.innerHTML = `
+                    <div class="no-posts">
+                        <i class="far fa-newspaper"></i>
+                        <h3>No updates available</h3>
+                        <p>There are no ${filter !== 'all' ? filter + ' ' : ''} posts to display at the moment. Please check back later for updates.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            filteredPosts.sort((a, b) => {
+                return new Date(b.date) - new Date(a.date);
+            });
+
+            filteredPosts.forEach((post, index) => {
+                const postElement = document.createElement('div');
+                postElement.classList.add('news-item');
+                postElement.setAttribute('data-post-index', index);
+                postElement.setAttribute('data-post-id', posts.indexOf(post));
+                const excerpt = post.content.length > 150 
+                    ? post.content.substring(0, 150).replace(/<br>/g, ' ') + '...' 
+                    : post.content.replace(/<br>/g, ' ');
+                let postContent = `
+                    <div class="news-image-container">
+                `;
+                if (post.image) {
+                    postContent += `<img src="${post.image}" alt="${post.title}" class="news-image">`;
+                } 
+                else {
+                    postContent += `
+                        <div class="news-placeholder">
+                            <i class="fas fa-newspaper"></i>
+                        </div>
+                    `;
+                }
+
+                postContent += `
+                    </div>
+                    <div class="news-content">
+                        <span class="news-type ${post.type}">${post.type === 'news' ? 'Company News' : 'Fleet Update'}</span>
+                        <h3 class="news-title">${post.title}</h3>
+                        <p class="news-excerpt">${excerpt}</p>
+                        <div class="news-meta">
+                            <span><i class="fas fa-user"></i> ${post.author}</span>
+                            <span><i class="far fa-calendar-alt"></i> ${formatDate(post.date)}</span>
+                        </div>
+                    </div>
+                `;
+
+                postElement.innerHTML = postContent;
+                postElement.addEventListener('click', function() {
+                    openPostModal(posts.indexOf(post));
+                });
+
+                newsGrid.appendChild(postElement);
+            });
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            if (isNaN(date.getTime())) {
+                return dateString; 
+            }
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return date.toLocaleDateString('en-US', options);
+        }
+
+        function openPostModal(postIndex) {
+            const posts = JSON.parse(localStorage.getItem('posts')) || [];
+            const post = posts[postIndex];
+            if (!post) return;
+            const modalContent = document.getElementById('modalContent');
+            let content = '';
+            if (post.image) {
+                content += `
+                    <div class="modal-image-container">
+                        <img src="${post.image}" alt="${post.title}" class="modal-image">
+                        <div class="modal-image-overlay"></div>
+                    </div>
+                `;
+            }
+
+            content += `
+                <div class="modal-body">
+                    <span class="news-type ${post.type}">${post.type === 'news' ? 'Company News' : 'Fleet Update'}</span>
+                    <h2 class="modal-title">${post.title}</h2>
+                    <div class="modal-content-text">${post.content}</div>
+                    <div class="modal-meta">
+                        <span><i class="fas fa-user"></i> Posted by ${post.author}</span>
+                        <span><i class="far fa-calendar-alt"></i> ${formatDate(post.date)}</span>
+                    </div>
+                </div>
+            `;
+            modalContent.innerHTML = content;
+            document.getElementById('postModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() 
+        {
+            document.getElementById('postModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        window.onclick = function(event) 
+        {
+            const modal = document.getElementById('postModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        filterButtons.forEach(button => 
+        {
+            button.addEventListener('click', function() {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                const filter = this.getAttribute('data-filter');
+                displayPublicPosts(filter);
+            });
+        });
+
+        document.addEventListener('keydown', function(event) 
+        {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        window.addEventListener('DOMContentLoaded', function() 
+        {
+            displayPublicPosts('all');
+        });
+        </script>
+    </body>
+</html>
